@@ -63,13 +63,13 @@ def progress(current, total, message, type):
 
 
 # start command
-@bot.on_message(filters.command(["nami"]))
+@bot.on_message(filters.command(["nami"]) & filters.chat_type("supergroup"))
 def send_start(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 	bot.send_message(message.chat.id, f"__👋 Hi **{message.from_user.mention}**, I am Save Restricted Bot, I can send you restricted content by it's post link__\n\n{USAGE}",
 	reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("Owner", url="https://onepiece.fandom.com/id/wiki/Nami")]]), reply_to_message_id=message.id)
 
 
-@bot.on_message(filters.text)
+@bot.on_message(filters.text & filters.chat_type("supergroup"))
 def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 	print(message.text)
 
